@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+
+  <display-name>Archetype Created Web Application</display-name>
+   <welcome-file-list>
+    <welcome-file>index.jsp</welcome-file>
+  </welcome-file-list>
+  
+<!-- 	   <context-param>
+	      <param-name>contextClass</param-name>
+	      <param-value>
+	          org.springframework.web.context.support.AnnotationConfigWebApplicationContext
+	      </param-value>
+	  </context-param>
+  -->
+<!--     <context-param>
+      <param-name>contextConfigLocation</param-name>
+      <param-value>/WEB-INF/web.xml</param-value>
+  	</context-param> -->
+   
+  	 <context-param>
+		<param-name>bucket</param-name>
+		<param-value>insurance-customers</param-value>
+	</context-param>
+
+  	 <context-param>
+		<param-name>album</param-name>
+		<param-value>customers</param-value>
+	</context-param>
+	
+  	 <context-param>
+		<param-name>collectionId</param-name>
+		<param-value>InsuranceCustomers</param-value>
+	</context-param>
+
+  	 <context-param>
+		<param-name>matchThreshold</param-name>
+		<param-value>70</param-value>
+	</context-param>
+
+  	 <context-param>
+		<param-name>maxFacesToReturn</param-name>
+		<param-value>1</param-value>
+	</context-param>
+			 
+	 <listener>
+	 	<listener-class>nt.faceauth.listener.AWSContextHandler</listener-class>
+	 </listener>
+
+<!-- 	<listener>
+   		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>  -->
+ 
+  <servlet>
+      <servlet-name>dispatcher</servlet-name>
+      <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+      <!-- Configure DispatcherServlet to use AnnotationConfigWebApplicationContext
+           instead of the default XmlWebApplicationContext -->
+<!--       <init-param>
+          <param-name>contextClass</param-name>
+          <param-value>
+              org.springframework.web.context.support.AnnotationConfigWebApplicationContext
+          </param-value>
+      </init-param>
+ -->
+      <init-param>
+          <param-name>contextConfigLocation</param-name>
+          <param-value>/WEB-INF/spring-config.xml</param-value>
+      </init-param>
+      <load-on-startup>1</load-on-startup>
+  </servlet>
+
+  <!-- map all requests for / to the dispatcher servlet -->
+  <servlet-mapping>
+      <servlet-name>dispatcher</servlet-name>
+      <url-pattern>/</url-pattern>
+  </servlet-mapping>
+ 
+  	
+</web-app>
